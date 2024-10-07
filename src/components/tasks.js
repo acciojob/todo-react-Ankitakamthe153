@@ -1,15 +1,30 @@
 import React from "react";
-import "./../styles/App.css";
-import Todo from "./Todo";
 
-const App = () => {
+const Tasks = (props) => {
+  const { allTasks, setAllTasks, handleDelete } = props;
   return (
-    <div id="main">
-      {/* <h1>To-Do List</h1> */}
-      <h1 className="heading">To-Do List</h1>
-      <Todo />
-    </div>
+    <>
+      {allTasks.map((items) => {
+        return (
+          <li className="task" key={items.id}>
+            <div>
+              <p>{items.name}</p>
+            </div>
+            <div className="delete-div">
+              <button
+                onClick={() => {
+                  handleDelete(items.id);
+                }}
+                className="delete-btn"
+              >
+                Delete
+              </button>
+            </div>
+          </li>
+        );
+      })}
+    </>
   );
 };
 
-export default App;
+export default Tasks;
